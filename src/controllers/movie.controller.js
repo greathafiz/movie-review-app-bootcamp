@@ -37,6 +37,7 @@ export const getAllMovies = async (req, res) => {
     console.log(filter);
 
     const movies = await Movie.find(filter).sort("createdAt");
+
     res.status(200).json({
       data: movies,
       total: movies.length,
@@ -51,7 +52,7 @@ export const getAllMovies = async (req, res) => {
 export const getSingleMovie = async (req, res) => {
   try {
     const { id: movieId } = req.params;
-    const movie = await Movie.findOne({ _id: movieId });
+    const movie = await Movie.findOne({ _id: movieId }).populate("reviews");
 
     if (!movie) {
       return res.status(404).json({ message: "Movie not found" });
@@ -105,5 +106,23 @@ export const deleteMovie = async (req, res) => {
 };
 
 export const getMovieReviews = async (req, res) => {
-  res.send("reviews");
+  try {
+    const { id: movieId } = req.params;
+
+    const movie = await Movie.findById(movieId).populate("reviews");
+
+    if (!movie) {
+      return res.status(404).json({
+        message: "Movie not found",
+      });
+    }
+
+    res.status(200).json({
+      data: movie.reviews,
+      message: "Resource fetched successfully",
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error });
+  }
 };

@@ -18,7 +18,7 @@ const MovieSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    // this is going to be the average rating based on all the movie's reviews
+    // this is going to be the average rating of the movie's reviews
     rating: {
       type: Number,
       default: null,

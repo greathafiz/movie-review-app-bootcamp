@@ -1,8 +1,8 @@
 import express from "express";
-import { connectDB } from "./config/db.js";
-import authRouter from "./routes/auth.route.js";
-import movieRouter from "./routes/movie.route.js";
-import reviewRouter from "./routes/review.route.js";
+import { connectDB } from "./src/config/db.js";
+import authRouter from "./src/routes/auth.route.js";
+import movieRouter from "./src/routes/movie.route.js";
+import reviewRouter from "./src/routes/review.route.js";
 
 const app = express();
 connectDB();
