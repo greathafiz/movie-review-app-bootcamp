@@ -19,7 +19,9 @@ export const registerController = async (req, res) => {
       role,
       password: hashedPassword,
     });
-    return res.status(201).json({ message: "User created. Proceed to login." });
+    return res
+      .status(201)
+      .json({ message: "Account successfully created. Proceed to login." });
   } catch (error) {
     return res.status(500).json({ error });
   }
@@ -50,7 +52,9 @@ export const loginController = async (req, res) => {
         expiresIn: process.env.JWT_LIFETIME,
       }
     );
-    return res.status(200).json({ message: "Login successful.", user, token });
+    return res
+      .status(200)
+      .json({ message: "Successfully logged in.", user, token });
   } catch (error) {
     return res.status(500).json({ error });
   }

@@ -14,6 +14,11 @@ const ReviewSchema = new mongoose.Schema({
     max: 5,
     required: true,
   },
+  movie: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Movie",
+    required: true,
+  },
   date: {
     type: Date,
     default: Date.now(),
