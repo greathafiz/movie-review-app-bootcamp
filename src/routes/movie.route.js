@@ -14,10 +14,7 @@ const admin = [authenticate, isAdmin]; // this is possible because you can store
 
 // only an admin can create, update, delete movies
 
-movieRouter
-  .route("/")
-  .post(isAdmin, createMovie)
-  .get(authenticate, getAllMovies);
+movieRouter.route("/").post(admin, createMovie).get(authenticate, getAllMovies);
 movieRouter
   .route("/:id")
   .get(authenticate, getSingleMovie)
